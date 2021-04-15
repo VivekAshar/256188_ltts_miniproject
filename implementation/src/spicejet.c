@@ -76,6 +76,47 @@ void spicejet_screen(Baggage *temp)
     }
     else
     {
+        switch(temp->Destination)
+        {
+            case DELHI:
+            temp->Post_screen="sd";
+            break;
+
+            case MUMBAI:
+            temp->Post_screen="sm";
+            break;
+
+            case BANGALORE:
+            temp->Post_screen="sb";
+            break;
+
+            case CHENNAI:
+            temp->Post_screen="sc";
+            break;
+
+            case HYDERABAD:
+            temp->Post_screen="sh";
+            break;
+
+            case AHMEDABAD:
+            temp->Post_screen="sa";
+            break;
+
+            case COCHIN:
+            temp->Post_screen="sk";
+            break;
+
+            case GOA:
+            temp->Post_screen="sg";
+            break;
+
+            case SILIGURI:
+            temp->Post_screen="ss";
+            break;
+        }
+
+        printf("Your baggage took the path\n");
+        printf("%s --> %s --> %s", temp->Post_read, temp->Pre_screen, temp->Post_screen);
         printf("Your baggage has been succesfully loaded on to the flight bounded to %s\n", temp->Destination);
     }
 }
