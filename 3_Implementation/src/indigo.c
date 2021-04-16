@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 #include "barcode.h"
 #include "airline.h"
 
@@ -20,58 +21,58 @@ typedef struct Baggage
 
 
 
-void airasia(Baggage *temp) // main function for airasia airline
+void indigo(Baggage *temp) // main function for indigo airline
 {
-    int *min_count; // To hold the current capacity of the pre-screening conveyor belt with least traffic for airasia
+    int *min_count; // To hold the current capacity of the pre-screening conveyor belt with least traffic for indigo
     
 
-    temp->Post_read="a";
+    temp->Post_read="g";
 
-    airasia_load(a,&a_count,temp->Barcode);
+    indigo_load(g,&g_count,temp->Barcode);
     (temp->conveyor)++;
 
-    long int *min_belt = airasia_min_traffic(temp);
+    long int *min_belt = indigo_min_traffic(temp);
     
-    if (temp->Pre_screen=="a1")
+    if (temp->Pre_screen=="g1")
     {
-        min_count=&a1_count;
+        min_count=&g1_count;
     }
 
-    if (temp->Pre_screen=="a2")
+    if (temp->Pre_screen=="g2")
     {
-        min_count=&a2_count;
+        min_count=&g2_count;
     }
 
-    if (temp->Pre_screen=="a3")
+    if (temp->Pre_screen=="g3")
     {
-        min_count=&a3_count;
+        min_count=&g3_count;
     }
 
-    if (temp->Pre_screen=="a4")
+    if (temp->Pre_screen=="g4")
     {
-        min_count=&a4_count;
+        min_count=&g4_count;
     }
 
-    if (temp->Pre_screen=="a5")
+    if (temp->Pre_screen=="g5")
     {
-        min_count=&a5_count;
+        min_count=&g5_count;
     }
 
 
-    airasia_load(min_belt, min_count, temp->Barcode);
+    indigo_load(min_belt, min_count, temp->Barcode);
     (temp->conveyor)++;
 
-    airasia_screen(temp);
+    indigo_screen(temp);
 
 }
 
-void airasia_screen(Baggage *temp)
+void indigo_screen(Baggage *temp)
 {
     int random=(rand()%10);
     if (random==0)
     {
         temp->Post_screen="c";
-        airasia_load(c,&c_count,temp->Barcode);
+        indigo_load(c,&c_count,temp->Barcode);
         printf("Your baggage has a contra-band, please collect it from the Baggage clearance area near gate 10 and clear it\n")
     }
     else
@@ -79,39 +80,39 @@ void airasia_screen(Baggage *temp)
         switch(temp->Destination)
         {
             case DELHI:
-            temp->Post_screen="ad";
+            temp->Post_screen="gd";
             break;
 
             case MUMBAI:
-            temp->Post_screen="am";
+            temp->Post_screen="gm";
             break;
 
             case BANGALORE:
-            temp->Post_screen="ab";
+            temp->Post_screen="gb";
             break;
 
             case CHENNAI:
-            temp->Post_screen="ac";
+            temp->Post_screen="gc";
             break;
 
             case HYDERABAD:
-            temp->Post_screen="ah";
+            temp->Post_screen="gh";
             break;
 
             case AHMEDABAD:
-            temp->Post_screen="aa";
+            temp->Post_screen="ga";
             break;
 
             case COCHIN:
-            temp->Post_screen="ak";
+            temp->Post_screen="gk";
             break;
 
             case GOA:
-            temp->Post_screen="ag";
+            temp->Post_screen="gg";
             break;
 
             case SILIGURI:
-            temp->Post_screen="as";
+            temp->Post_screen="gs";
             break;
         }
 
@@ -121,7 +122,7 @@ void airasia_screen(Baggage *temp)
     }
 }
 
-void airasia_load(long int *belt, int *count,long int PNR) // To load a given baggage onto a given conveyor belt for airasia
+void indigo_load(long int *belt, int *count,long int PNR) // To load a given baggage onto a given conveyor belt for indigo
 {
     if (*count==20)
     {
@@ -149,10 +150,9 @@ void airasia_load(long int *belt, int *count,long int PNR) // To load a given ba
     }
 }
 
-
-long int *airasia_min_traffic(Baggage *temp1)
+long int *indigo_min_traffic(Baggage *temp1)
 {
-    int arr_temp[5]={a1_count, a2_count , a3_count , a4_count, a5_count};
+    int arr_temp[5]={g1_count, g2_count , g3_count , g4_count, g5_count};
 
     int min = 21;
     int min_index;
@@ -168,28 +168,28 @@ long int *airasia_min_traffic(Baggage *temp1)
 
     if (min_index==0)
     {
-        temp1->Pre_screen="a1";
-        return a1;
+        temp1->Pre_screen="g1";
+        return g1;
     }
     if (min_index==1)
     {
-        temp1->Pre_screen="a2";
-        return a2;
+        temp1->Pre_screen="g2";
+        return g2;
     }
     if (min_index==2)
     {
-        temp1->Pre_screen="a3";
-        return a3;
+        temp1->Pre_screen="g3";
+        return g3;
     }
     if (min_index==3)
     {
-        temp1->Pre_screen="a4";
-        return a4;
+        temp1->Pre_screen="g4";
+        return g4;
     }
     if (min_index==4)
     {
-        temp1->Pre_screen="a5";
-        return a5;
+        temp1->Pre_screen="g5";
+        return g5;
     }
 
 }

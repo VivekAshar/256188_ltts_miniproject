@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 #include "barcode.h"
 #include "airline.h"
 
@@ -20,58 +21,58 @@ typedef struct Baggage
 
 
 
-void spicejet(Baggage *temp) // main function for spicejet airline
+void airasia(Baggage *temp) // main function for airasia airline
 {
-    int *min_count; // To hold the current capacity of the pre-screening conveyor belt with least traffic
+    int *min_count; // To hold the current capacity of the pre-screening conveyor belt with least traffic for airasia
     
 
-    temp->Post_read="s";
+    temp->Post_read="a";
 
-    spicejet_load(s,&s_count,temp->Barcode);
+    airasia_load(a,&a_count,temp->Barcode);
     (temp->conveyor)++;
 
-    long int *min_belt = spicejet_min_traffic(temp);
+    long int *min_belt = airasia_min_traffic(temp);
     
-    if (temp->Pre_screen=="s1")
+    if (temp->Pre_screen=="a1")
     {
-        min_count=&s1_count;
+        min_count=&a1_count;
     }
 
-    if (temp->Pre_screen=="s2")
+    if (temp->Pre_screen=="a2")
     {
-        min_count=&s2_count;
+        min_count=&a2_count;
     }
 
-    if (temp->Pre_screen=="s3")
+    if (temp->Pre_screen=="a3")
     {
-        min_count=&s3_count;
+        min_count=&a3_count;
     }
 
-    if (temp->Pre_screen=="s4")
+    if (temp->Pre_screen=="a4")
     {
-        min_count=&s4_count;
+        min_count=&a4_count;
     }
 
-    if (temp->Pre_screen=="s5")
+    if (temp->Pre_screen=="a5")
     {
-        min_count=&s5_count;
+        min_count=&a5_count;
     }
 
 
-    spicejet_load(min_belt, min_count, temp->Barcode);
+    airasia_load(min_belt, min_count, temp->Barcode);
     (temp->conveyor)++;
 
-    spicejet_screen(temp);
+    airasia_screen(temp);
 
 }
 
-void spicejet_screen(Baggage *temp)
+void airasia_screen(Baggage *temp)
 {
     int random=(rand()%10);
     if (random==0)
     {
         temp->Post_screen="c";
-        spicejet_load(c,&c_count,temp->Barcode);
+        airasia_load(c,&c_count,temp->Barcode);
         printf("Your baggage has a contra-band, please collect it from the Baggage clearance area near gate 10 and clear it\n")
     }
     else
@@ -79,39 +80,39 @@ void spicejet_screen(Baggage *temp)
         switch(temp->Destination)
         {
             case DELHI:
-            temp->Post_screen="sd";
+            temp->Post_screen="ad";
             break;
 
             case MUMBAI:
-            temp->Post_screen="sm";
+            temp->Post_screen="am";
             break;
 
             case BANGALORE:
-            temp->Post_screen="sb";
+            temp->Post_screen="ab";
             break;
 
             case CHENNAI:
-            temp->Post_screen="sc";
+            temp->Post_screen="ac";
             break;
 
             case HYDERABAD:
-            temp->Post_screen="sh";
+            temp->Post_screen="ah";
             break;
 
             case AHMEDABAD:
-            temp->Post_screen="sa";
+            temp->Post_screen="aa";
             break;
 
             case COCHIN:
-            temp->Post_screen="sk";
+            temp->Post_screen="ak";
             break;
 
             case GOA:
-            temp->Post_screen="sg";
+            temp->Post_screen="ag";
             break;
 
             case SILIGURI:
-            temp->Post_screen="ss";
+            temp->Post_screen="as";
             break;
         }
 
@@ -121,7 +122,7 @@ void spicejet_screen(Baggage *temp)
     }
 }
 
-void spicejet_load(long int *belt, int *count,long int PNR) // To load a given baggage onto a given conveyor belt
+void airasia_load(long int *belt, int *count,long int PNR) // To load a given baggage onto a given conveyor belt for airasia
 {
     if (*count==20)
     {
@@ -149,9 +150,10 @@ void spicejet_load(long int *belt, int *count,long int PNR) // To load a given b
     }
 }
 
-long int *spicejet_min_traffic(Baggage *temp1)
+
+long int *airasia_min_traffic(Baggage *temp1)
 {
-    int arr_temp[5]={s1_count, s2_count , s3_count , s4_count, s5_count};
+    int arr_temp[5]={a1_count, a2_count , a3_count , a4_count, a5_count};
 
     int min = 21;
     int min_index;
@@ -167,28 +169,28 @@ long int *spicejet_min_traffic(Baggage *temp1)
 
     if (min_index==0)
     {
-        temp1->Pre_screen="s1";
-        return s1;
+        temp1->Pre_screen="a1";
+        return a1;
     }
     if (min_index==1)
     {
-        temp1->Pre_screen="s2";
-        return s2;
+        temp1->Pre_screen="a2";
+        return a2;
     }
     if (min_index==2)
     {
-        temp1->Pre_screen="s3";
-        return s3;
+        temp1->Pre_screen="a3";
+        return a3;
     }
     if (min_index==3)
     {
-        temp1->Pre_screen="s4";
-        return s4;
+        temp1->Pre_screen="a4";
+        return a4;
     }
     if (min_index==4)
     {
-        temp1->Pre_screen="s5";
-        return s5;
+        temp1->Pre_screen="a5";
+        return a5;
     }
 
 }

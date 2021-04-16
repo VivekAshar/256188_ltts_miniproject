@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 #include "barcode.h"
 #include "airline.h"
 
@@ -20,58 +21,58 @@ typedef struct Baggage
 
 
 
-void indigo(Baggage *temp) // main function for indigo airline
+void spicejet(Baggage *temp) // main function for spicejet airline
 {
-    int *min_count; // To hold the current capacity of the pre-screening conveyor belt with least traffic for indigo
+    int *min_count; // To hold the current capacity of the pre-screening conveyor belt with least traffic
     
 
-    temp->Post_read="g";
+    temp->Post_read="s";
 
-    indigo_load(g,&g_count,temp->Barcode);
+    spicejet_load(s,&s_count,temp->Barcode);
     (temp->conveyor)++;
 
-    long int *min_belt = indigo_min_traffic(temp);
+    long int *min_belt = spicejet_min_traffic(temp);
     
-    if (temp->Pre_screen=="g1")
+    if (temp->Pre_screen=="s1")
     {
-        min_count=&g1_count;
+        min_count=&s1_count;
     }
 
-    if (temp->Pre_screen=="g2")
+    if (temp->Pre_screen=="s2")
     {
-        min_count=&g2_count;
+        min_count=&s2_count;
     }
 
-    if (temp->Pre_screen=="g3")
+    if (temp->Pre_screen=="s3")
     {
-        min_count=&g3_count;
+        min_count=&s3_count;
     }
 
-    if (temp->Pre_screen=="g4")
+    if (temp->Pre_screen=="s4")
     {
-        min_count=&g4_count;
+        min_count=&s4_count;
     }
 
-    if (temp->Pre_screen=="g5")
+    if (temp->Pre_screen=="s5")
     {
-        min_count=&g5_count;
+        min_count=&s5_count;
     }
 
 
-    indigo_load(min_belt, min_count, temp->Barcode);
+    spicejet_load(min_belt, min_count, temp->Barcode);
     (temp->conveyor)++;
 
-    indigo_screen(temp);
+    spicejet_screen(temp);
 
 }
 
-void indigo_screen(Baggage *temp)
+void spicejet_screen(Baggage *temp)
 {
     int random=(rand()%10);
     if (random==0)
     {
         temp->Post_screen="c";
-        indigo_load(c,&c_count,temp->Barcode);
+        spicejet_load(c,&c_count,temp->Barcode);
         printf("Your baggage has a contra-band, please collect it from the Baggage clearance area near gate 10 and clear it\n")
     }
     else
@@ -79,39 +80,39 @@ void indigo_screen(Baggage *temp)
         switch(temp->Destination)
         {
             case DELHI:
-            temp->Post_screen="gd";
+            temp->Post_screen="sd";
             break;
 
             case MUMBAI:
-            temp->Post_screen="gm";
+            temp->Post_screen="sm";
             break;
 
             case BANGALORE:
-            temp->Post_screen="gb";
+            temp->Post_screen="sb";
             break;
 
             case CHENNAI:
-            temp->Post_screen="gc";
+            temp->Post_screen="sc";
             break;
 
             case HYDERABAD:
-            temp->Post_screen="gh";
+            temp->Post_screen="sh";
             break;
 
             case AHMEDABAD:
-            temp->Post_screen="ga";
+            temp->Post_screen="sa";
             break;
 
             case COCHIN:
-            temp->Post_screen="gk";
+            temp->Post_screen="sk";
             break;
 
             case GOA:
-            temp->Post_screen="gg";
+            temp->Post_screen="sg";
             break;
 
             case SILIGURI:
-            temp->Post_screen="gs";
+            temp->Post_screen="ss";
             break;
         }
 
@@ -121,7 +122,7 @@ void indigo_screen(Baggage *temp)
     }
 }
 
-void indigo_load(long int *belt, int *count,long int PNR) // To load a given baggage onto a given conveyor belt for indigo
+void spicejet_load(long int *belt, int *count,long int PNR) // To load a given baggage onto a given conveyor belt
 {
     if (*count==20)
     {
@@ -149,9 +150,9 @@ void indigo_load(long int *belt, int *count,long int PNR) // To load a given bag
     }
 }
 
-long int *indigo_min_traffic(Baggage *temp1)
+long int *spicejet_min_traffic(Baggage *temp1)
 {
-    int arr_temp[5]={g1_count, g2_count , g3_count , g4_count, g5_count};
+    int arr_temp[5]={s1_count, s2_count , s3_count , s4_count, s5_count};
 
     int min = 21;
     int min_index;
@@ -167,28 +168,28 @@ long int *indigo_min_traffic(Baggage *temp1)
 
     if (min_index==0)
     {
-        temp1->Pre_screen="g1";
-        return g1;
+        temp1->Pre_screen="s1";
+        return s1;
     }
     if (min_index==1)
     {
-        temp1->Pre_screen="g2";
-        return g2;
+        temp1->Pre_screen="s2";
+        return s2;
     }
     if (min_index==2)
     {
-        temp1->Pre_screen="g3";
-        return g3;
+        temp1->Pre_screen="s3";
+        return s3;
     }
     if (min_index==3)
     {
-        temp1->Pre_screen="g4";
-        return g4;
+        temp1->Pre_screen="s4";
+        return s4;
     }
     if (min_index==4)
     {
-        temp1->Pre_screen="g5";
-        return g5;
+        temp1->Pre_screen="s5";
+        return s5;
     }
 
 }
