@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "barcode.h"
+#include <string.h>
 
 
 
@@ -32,18 +32,18 @@ int enter_info()
     }
     else
     {
-        final_destination="NONE";
+        final_destination=NULL;
     }
 
-    Baggage temp0;
-    temp0->Airline=airline;
-    temp0->Destination=destination;
-    temp0->Travel_type=travel_type;
-    temp0->Final_destination=final_destination;
-    temp0->Conveyor=0;
-    temp0->Post_read="";
-    temp0->Pre_screen="";
-    temp0->Post_screen="";
+    struct Baggage temp0;
+    strcpy(temp0.Airline,airline);
+    strcpy(temp0.Destination,destination);
+    strcpy(temp0.Travel_type,travel_type);
+    strcpy(temp0.Final_destination,final_destination);
+    temp0.Conveyor=0;
+    temp0.Post_read=NULL;
+    temp0.Pre_screen=NULL;
+    temp0.Post_screen=NULL;
 
     return frame_barcode(&temp0);
 
